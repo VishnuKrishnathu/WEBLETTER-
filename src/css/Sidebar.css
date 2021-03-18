@@ -1,0 +1,73 @@
+.sidebar {
+  padding-top: calc(9vh + 10px);
+  position: fixed;
+  width: 25vw;
+  height: 100vh;
+  background: #42446a;
+  z-index: 99;
+  color: #9092bc;
+  font-size: 1.5rem;
+  -webkit-transform: translateX(-25vw);
+          transform: translateX(-25vw);
+  -webkit-transition: -webkit-transform 0.3s ease-in-out;
+  transition: -webkit-transform 0.3s ease-in-out;
+  transition: transform 0.3s ease-in-out;
+  transition: transform 0.3s ease-in-out, -webkit-transform 0.3s ease-in-out;
+}
+
+#home,
+#trending {
+  padding: 10px;
+  width: 100%;
+  height: 50px;
+  cursor: pointer;
+  position: relative;
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
+}
+
+#home::before,
+#trending::before {
+  content: "";
+  position: absolute;
+  height: 0%;
+  top: 50%;
+  bottom: 50%;
+  left: 0px;
+  width: 0px;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+}
+
+.expanded {
+  padding-top: calc(9vh + 10px);
+  position: fixed;
+  width: 25vw;
+  height: 100vh;
+  background: #42446a;
+  z-index: 99;
+  color: #9092bc;
+  font-size: 1.5rem;
+  -webkit-transform: translateX(0vw);
+          transform: translateX(0vw);
+  -webkit-transition: -webkit-transform 0.3s ease-in-out;
+  transition: -webkit-transform 0.3s ease-in-out;
+  transition: transform 0.3s ease-in-out;
+  transition: transform 0.3s ease-in-out, -webkit-transform 0.3s ease-in-out;
+}
+
+#home:hover,
+#trending:hover {
+  padding-left: 25px;
+  color: white;
+}
+
+#home:hover::before,
+#trending:hover::before {
+  background: white;
+  height: 50%;
+  width: 5px;
+  top: 25%;
+  bottom: 25%;
+}
+/*# sourceMappingURL=Sidebar.css.map */
