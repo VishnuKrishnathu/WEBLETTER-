@@ -1,8 +1,9 @@
 import NavBar from "./components/NavBar";
 import SideBar from "./components/SideBar";
 import HomePage from "./components/HomePage";
+import UserPage from "./components/UserPage";
 import "./css/Init.css";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 function App() {
   return (
@@ -10,7 +11,14 @@ function App() {
       <div className="App">
         <NavBar />
         <SideBar />
-        <HomePage />
+        <Switch>
+          <Route path="/users">
+            <UserPage />
+          </Route>
+          <Route path="/">
+            <HomePage />
+          </Route>
+        </Switch>
       </div>
     </Router>
   );

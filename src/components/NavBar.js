@@ -1,7 +1,7 @@
 import React from "react";
 import "../css/Navbar.css";
 import SearchBar from "./SearchBar";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 export default function NavBar() {
   const [bool, setBool] = useState(() => {
@@ -9,7 +9,6 @@ export default function NavBar() {
   });
 
   function expandFunc() {
-    console.log("clicked");
     const hamburger = document.querySelector("#hamburger");
     if (!bool) {
       const sidebar = document.querySelector(".sidebar");
