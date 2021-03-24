@@ -1,6 +1,21 @@
 import "../css/Userpage.css";
+import { useState, useEffect } from "react";
 
 export default function UserPage() {
+  const [profileData, setProfiledata] = useState();
+
+  useEffect(() => {
+    let fetchdata;
+    fetch("http://127.0.0.1:8000/api/3", {
+      method: "GET",
+    })
+      .then((res) => res.json())
+      .then((data) => setProfiledata(data));
+  }, []);
+
+  useEffect(() => {
+    console.log(profileData);
+  }, [profileData]);
   return (
     <div className="users-page">
       <div id="profile-picture">
@@ -32,11 +47,21 @@ export default function UserPage() {
       <div id="firstlast-name">
         <div id="firstname">
           <label for="fname">First Name : </label>
-          <input type="text" placeholder="First Name" name="fname" required />
+          <input
+            type="text"
+            placeholder={profileData.firstname}
+            name="fname"
+            required
+          />
         </div>
         <div id="lastname">
           <label for="lname">Last Name : </label>
-          <input type="text" placeholder="Last Name" name="lname" required />
+          <input
+            type="text"
+            placeholder={profileData.lastname}
+            name="lname"
+            required
+          />
         </div>
       </div>
       <div id="email-add">

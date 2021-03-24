@@ -9,7 +9,6 @@ export default function NavBar() {
   });
 
   function expandFunc() {
-    const hamburger = document.querySelector("#hamburger");
     if (!bool) {
       const sidebar = document.querySelector(".sidebar");
       sidebar.setAttribute("class", "expanded");
