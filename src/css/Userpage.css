@@ -53,27 +53,38 @@
 
 #profile-picture::before {
   content: "";
-  background: url(../assets/profile-picture.jpg);
+  background: var(--main-url);
   position: absolute;
   top: 0px;
   bottom: 0px;
   right: 0px;
   left: 0px;
   background-size: cover;
+  background-repeat: no-repeat;
   border-radius: 50%;
-  background-position: 0px -15px;
 }
 
 #profile-picture div {
-  position: absolute;
-  cursor: pointer;
+  z-index: 2;
   height: 100%;
   width: 100%;
-  -webkit-transform: scale(0.4);
-          transform: scale(0.4);
-  -webkit-transition: all 0.2s;
-  transition: all 0.2s;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  -webkit-transform: scale(0.5);
+          transform: scale(0.5);
   opacity: 0;
+}
+
+#profile-picture div input {
+  display: none;
+}
+
+#profile-picture div label {
+  height: 100%;
+  width: 100%;
 }
 
 #profile-picture:hover div {
