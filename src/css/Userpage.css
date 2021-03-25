@@ -23,11 +23,17 @@
   border: none;
   color: #000;
   font-weight: 500;
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
 }
 
 .users-page button:hover {
   background: #42446a;
   color: white;
+}
+
+.users-page button:active {
+  opacity: 0.8;
 }
 
 #profile-picture {

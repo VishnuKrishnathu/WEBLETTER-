@@ -2,10 +2,37 @@ import "../css/Userpage.css";
 import { useState, useEffect } from "react";
 
 export default function UserPage() {
-  let inputdata;
-  function saveButton() {
-    console.log(inputdata);
-  }
+  ////////// Hook to store profilepicture data ////////////
+  const [profilePicture, setProfilePicture] = useState();
+
+  //////// Post data to api /////////////
+
+  const saveUserData = () => {
+    let lname = document.querySelector("#lname").value;
+    let fname = document.querySelector("#fname").value;
+    let emailid = document.querySelector("#emailadd").value;
+    let phone_number = document.querySelector("#phoneno").value;
+
+    let data = new FormData();
+    data.append("firstname", fname ? fname : profileData.firstname);
+    data.append("lastname", lname ? lname : profileData.lastname);
+    data.append("emailid", emailid ? emailid : profileData.emailid);
+    data.append(
+      "phonenumber",
+      phone_number ? phone_number : profileData.phonenumber
+    );
+    if (profilePicture) {
+      data.append("profilepicture", profilePicture);
+    }
+
+    fetch("http://127.0.0.1:8000/api/5/", {
+      method: "POST",
+      body: data,
+    }).catch((error) => console.log("error"));
+  };
+
+  ///////Use State Hook to set Profile Data///////////////////
+
   const [profileData, setProfiledata] = useState(() => {
     return {
       firstname: "First Name",
@@ -16,27 +43,25 @@ export default function UserPage() {
     };
   });
 
-  const inputDataStore = (e) => {
-    console.log(e.target.value);
-  };
+  //use effect hook to fetch data after loading//////////
 
   useEffect(() => {
-    fetch("http://127.0.0.1:8000/api/3", {
+    fetch("http://127.0.0.1:8000/api/5", {
       method: "GET",
     })
       .then((res) => res.json())
       .then((data) => setProfiledata(data));
   }, []);
 
+  ///use effect hook to update data/////////////////////
+
   useEffect(() => {
-    console.log(profileData);
     let style = `--main-url: url("http://127.0.0.1:8000${profileData.profilepicture}");`;
-    // style = {
-    //   "--main-url": `url(http://127.0.0.1:8000${profileData.profilepicture}`,
-    // };
     const profilepic = document.querySelector("#profile-picture");
     profilepic.setAttribute("style", style);
   }, [profileData]);
+
+  //////////rendered output/////////////////////
 
   return (
     <div className="users-page">
@@ -66,13 +91,19 @@ export default function UserPage() {
               ></path>
             </svg>
           </label>
-          <input type="file" id="avatar" accept="image/png image/jpeg" />
+          <input
+            type="file"
+            id="avatar"
+            accept="image/png, image/jpeg ,image/jpg"
+            onChange={(e) => setProfilePicture(e.target.files[0])}
+          />
         </div>
       </div>
       <div id="firstlast-name">
         <div id="firstname">
           <label for="fname">First Name : </label>
           <input
+            id="fname"
             type="text"
             placeholder={profileData.firstname}
             name="fname"
@@ -86,7 +117,6 @@ export default function UserPage() {
             type="text"
             placeholder={profileData.lastname}
             name="lname"
-            onChange={inputDataStore}
             required
           />
         </div>
@@ -94,6 +124,7 @@ export default function UserPage() {
       <div id="email-add">
         <label for="emailadd">Email ID :</label>
         <input
+          id="emailadd"
           name="emailadd"
           type="text"
           placeholder={profileData.emailid}
@@ -103,12 +134,13 @@ export default function UserPage() {
       <div id="contact-number">
         <label for="phone-no">Contact Number (With country code) :</label>
         <input
+          id="phoneno"
           name="phone-no"
           type="text"
           placeholder={profileData.phonenumber}
         />
       </div>
-      <button>Save</button>
+      <button onClick={saveUserData}>Save</button>
     </div>
   );
 }
