@@ -1,6 +1,8 @@
 import "../css/HomePage.css";
 import Card from "./Card";
 import { useState, useEffect } from "react";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import Article from "./Article";
 
 export default function HomePage() {
   ///// use State hook to set posts ////////
@@ -13,15 +15,14 @@ export default function HomePage() {
       .then((data) => setPosts(data));
   }, []);
 
-  /// updating the changes in the use effect
-  // useEffect(() => {
-  //   console.log(posts);
-  // }, [posts]);
-
   return (
     <div className="main-content">
       {posts.map((post) => (
-        <Card />
+        <>
+          <Link to={`/${post.id}`}>
+            <Card post={post} />
+          </Link>
+        </>
       ))}
     </div>
   );

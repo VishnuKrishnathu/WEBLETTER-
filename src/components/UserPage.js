@@ -28,7 +28,7 @@ export default function UserPage() {
     fetch("http://127.0.0.1:8000/api/5/", {
       method: "POST",
       body: data,
-    }).catch((error) => console.log("error"));
+    }).catch((error) => console.log(error));
   };
 
   ///////Use State Hook to set Profile Data///////////////////
