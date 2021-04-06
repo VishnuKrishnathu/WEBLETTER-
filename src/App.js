@@ -3,24 +3,38 @@ import SideBar from "./components/SideBar";
 import HomePage from "./components/HomePage";
 import UserPage from "./components/UserPage";
 import Article from "./components/Article";
-import "./css/Init.css";
+import LoginPage from "./components/LoginPage";
+import RegisterationPage from "./components/RegisterationPage";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import "./css/Init.css";
 
 function App() {
   return (
     <Router>
       <div className="App">
-        <NavBar />
-        <SideBar />
         <Switch>
           <Route path="/users">
+            <NavBar />
+            <SideBar />
             <UserPage />
           </Route>
           <Route path="/" exact>
+            <NavBar />
+            <SideBar />
             <HomePage />
           </Route>
+          <Route exact path="/login">
+            <LoginPage />
+          </Route>
+          <Route exact path="/register">
+            <RegisterationPage />
+          </Route>
+          <Route exact path="/:id">
+            <NavBar />
+            <SideBar />
+            <Article />
+          </Route>
         </Switch>
-        <Route exact path="/:id" component={Article} />
       </div>
     </Router>
   );
