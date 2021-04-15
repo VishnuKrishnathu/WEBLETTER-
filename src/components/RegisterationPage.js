@@ -1,10 +1,12 @@
 import React,{useState, useEffect} from "react";
+import "../css/RegisterationPage.css";
+import { useHistory } from "react-router-dom";
 
 export default function RegisterationPage() {
 	const [userData, setUserData] = useState(null);
 	const [Data, setData] = useState({});
+	const history = useHistory();
 	const RegisterUser = ()=>{
-		console.log("clicked");
 		const first_name = document.getElementById('fname').value;
 		const last_name = document.getElementById('lname').value;
 		const email_add = document.getElementById('Email').value;
@@ -21,7 +23,6 @@ export default function RegisterationPage() {
 			phonenumber: phone_number,
 		});
 		if(first_name && last_name && email_add && password1 && password2 && username && phone_number){
-			console.log("success");
 		    	let data = new FormData();
 		    	data.append("firstname", first_name);
 		    	data.append("lastname", last_name);
@@ -42,7 +43,6 @@ export default function RegisterationPage() {
 	///adding the data to the username database and authorizing the user
 	useEffect(()=>{
 		if(userData !== null){
-			console.log(userData);
 			let data = new FormData();
 			data.append('userdata', userData);
 			data.append('username', Data.user_name);
@@ -53,7 +53,14 @@ export default function RegisterationPage() {
 			fetch('http://127.0.0.1:8000/auth/register/',{
 				method: 'POST',
 				body:data,
-			}).then(res => res.json()).then(data => console.log(data));
+			}).then(res => res.json()).then(data => {
+				if(data.username && data.password){
+					document.querySelector(".error_success").textContent="User Created Successfuly";
+					history.push('/login');
+				}else{
+					document.querySelector(".error_success").textContent="User not created try a different username and password";
+				}
+			});
 
 		}
 	},[userData])
@@ -85,14 +92,15 @@ export default function RegisterationPage() {
 	  </div>
 	  <div>
 	  	<label for="password1">Password:</label>
-	  	<input type="text" name='password1' id="password1"/>
+	  	<input type="password" name='password1' id="password1"/>
 	  </div>
 	  <div>
 	  	<label for="password2">Confirm Password:</label>
-	  	<input type="text" name='password2' id="password2"/>
+	  	<input type="password" name='password2' id="password2"/>
 	  </div>
 	  <button onClick={RegisterUser}>Sign In</button>
       </div>
+		<section className="error_success"></section>
     </div>
   );
 }
