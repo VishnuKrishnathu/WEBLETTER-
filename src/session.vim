@@ -7,18 +7,20 @@ if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
-badd +59 components/LoginPage.js
+badd +42 components/LoginPage.js
 badd +1 components/RegisterationPage.js
 badd +1 redux/index.js
 badd +1 redux/token.js
 badd +10 index.js
-badd +12 components/HomePage.js
+badd +26 components/HomePage.js
 badd +42 App.js
-badd +0 components/UserPage.js
+badd +32 components/UserPage.js
+badd +9 components/Card.js
+badd +12 components/Article.js
 argglobal
 %argdel
 $argadd components/LoginPage.js
-edit components/UserPage.js
+edit components/LoginPage.js
 set splitbelow splitright
 wincmd _ | wincmd |
 vsplit
@@ -43,15 +45,15 @@ setlocal fml=1
 setlocal fdn=20
 setlocal fen
 silent! normal! zE
-let s:l = 49 - ((37 * winheight(0) + 25) / 50)
+let s:l = 39 - ((38 * winheight(0) + 25) / 50)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-49
-normal! 025|
+39
+normal! 013|
 wincmd w
 argglobal
-if bufexists("components/LoginPage.js") | buffer components/LoginPage.js | else | edit components/LoginPage.js | endif
+if bufexists("App.js") | buffer App.js | else | edit App.js | endif
 setlocal fdm=manual
 setlocal fde=0
 setlocal fmr={{{,}}}
@@ -61,12 +63,12 @@ setlocal fml=1
 setlocal fdn=20
 setlocal fen
 silent! normal! zE
-let s:l = 41 - ((29 * winheight(0) + 25) / 50)
+let s:l = 19 - ((18 * winheight(0) + 25) / 50)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-41
-normal! 013|
+19
+normal! 05|
 wincmd w
 2wincmd w
 exe 'vert 1resize ' . ((&columns * 96 + 96) / 193)

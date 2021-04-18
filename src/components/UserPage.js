@@ -1,10 +1,21 @@
 import "../css/Userpage.css";
 import { useState, useEffect } from "react";
 
-export default function UserPage({ token }) {
+export default function UserPage() {
   ////////// Hook to store profilepicture data ////////////
   const [profilePicture, setProfilePicture] = useState();
-
+	const [token, setToken] = useState({});
+/////////////// useEffect hook of updated tokens /////
+	useEffect(()=>{
+    fetch(`http://127.0.0.1:8000/api/${token.id}`, {
+      method: "GET",
+		headers:{
+			'Authorization' : `Token ${token.token}`,
+		}
+    })
+      .then((res) => res.json())
+      .then((data) => setProfiledata(data));
+	},[token]);
   //////// Post data to api /////////////
 
   const saveUserData = () => {
@@ -46,12 +57,12 @@ export default function UserPage({ token }) {
   //use effect hook to fetch data after loading//////////
 
   useEffect(() => {
-	  console.log(token);
-    fetch(`http://127.0.0.1:8000/api/${token.id}`, {
-      method: "GET",
-    })
-      .then((res) => res.json())
-      .then((data) => setProfiledata(data));
+	  setToken(()=>{
+		  return {
+			  token : localStorage.getItem('token'),
+			  id : localStorage.getItem('dataid'),
+		  }
+	  });
   }, []);
 
   ///use effect hook to update data/////////////////////

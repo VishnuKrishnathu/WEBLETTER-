@@ -6,16 +6,11 @@ import Article from "./components/Article";
 import LoginPage from "./components/LoginPage";
 import RegisterationPage from "./components/RegisterationPage";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import React, { useState } from "react";
+import React from "react";
 import "./css/Init.css";
 
 function App() {
-	const [ token, setToken] = useState({});
-	const tokenObtain = ( tokens, id )=>{
-		setToken({ token : tokens,
-			id:id 
-		});
-	}
+
   return (
     <Router>
       <div className="App">
@@ -23,15 +18,15 @@ function App() {
           <Route path="/users">
             <NavBar />
             <SideBar />
-            <UserPage token = {token}/>
+            <UserPage />
           </Route>
           <Route path="/" exact>
             <NavBar />
             <SideBar />
-            <HomePage token= {token}/>
+            <HomePage />
           </Route>
           <Route exact path="/login">
-            <LoginPage tokenObtain = {tokenObtain}/>
+            <LoginPage />
           </Route>
           <Route exact path="/register">
             <RegisterationPage />
@@ -39,7 +34,7 @@ function App() {
           <Route exact path="/:id">
             <NavBar />
             <SideBar />
-            <Article token = {token}/>
+            <Article />
           </Route>
         </Switch>
       </div>

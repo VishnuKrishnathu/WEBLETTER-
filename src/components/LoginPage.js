@@ -2,7 +2,7 @@ import React, {useState, useEffect} from "react";
 import { useHistory } from "react-router-dom";
 import "../css/LoginPage.css";
 
-export default function LoginPage( {tokenObtain}) {
+export default function LoginPage() {
 	const [loginAccess, setLoginAccess] = useState({});
 	const [userData, setUserData] = useState({});
 	const [token, setToken] = useState({});
@@ -20,7 +20,10 @@ export default function LoginPage( {tokenObtain}) {
 	  }).then(res => res.json())
 	  .then(data => setLoginAccess(data));
   };
-
+//// clearing the local storage /////
+	useEffect(()=>{
+		localStorage.clear();
+	}, [])
 	//getting token from the api
 	useEffect(()=>{
 		if (loginAccess.username){
@@ -36,7 +39,8 @@ export default function LoginPage( {tokenObtain}) {
 	/// updating the token to the reducers
 	useEffect(()=>{
 		if (token.token){
-			tokenObtain(token.token , loginAccess.userdata);
+			localStorage.setItem('token', token.token);
+			localStorage.setItem('dataid', loginAccess.userdata);
 			history.push('/');
 		}else{
 			document.querySelector('.error_class').textContent= "Enter a valid username and password";

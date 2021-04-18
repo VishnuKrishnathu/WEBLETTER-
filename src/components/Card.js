@@ -1,10 +1,15 @@
 import { useState, useEffect } from "react";
 
-export default function Card({ post }) {
+export default function Card({post}) {
   const [user, setUser] = useState({});
 
   useEffect(() => {
-    fetch(`http://127.0.0.1:8000/api/${post.posts}`)
+	  const token = localStorage.getItem('token');
+    fetch(`http://127.0.0.1:8000/api/${post.posts}`,{
+		headers : {
+			'Authorization' : `Token ${token}`,
+		}
+	})
       .then((res) => res.json())
       .then((data) => setUser(data));
   }, []);

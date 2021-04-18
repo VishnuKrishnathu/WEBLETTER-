@@ -2,12 +2,17 @@ import React, { useEffect, useState } from "react";
 import "../css/Article.css";
 import {useParams} from "react-router-dom";
 
-export default function Article({ match }) {
+export default function Article() {
   const [post, setPost] = useState({});
 	  const {id} = useParams();
 
   useEffect(() => {
-    fetch(`http://127.0.0.1:8000/posts/${id}`)
+	  const token = localStorage.getItem('token');
+    fetch(`http://127.0.0.1:8000/posts/${id}`,{
+		headers:{
+			'Authorization' : `Token ${token}`,
+		}
+	})
       .then((res) => res.json())
       .then((data) => setPost(data));
     console.log(post);
