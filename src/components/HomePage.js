@@ -4,10 +4,11 @@ import { useState, useEffect } from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import Article from "./Article";
 
-export default function HomePage() {
+export default function HomePage( {token} ) {
   ///// use State hook to set posts ////////
   const [posts, setPosts] = useState([]);
   const [fetchStatus, setfetchStatus] = useState(true);
+//	const token = useSelector(token => token.tokens);
   const content = `
   <div className = "error-page">
     <a href="#">Login</a>
@@ -17,6 +18,7 @@ export default function HomePage() {
 
   //////// loading posts from the api ///////
   useEffect(() => {
+	  console.log(token);
     fetch("http://127.0.0.1:8000/posts/")
       .then((res) => res.json())
       .then((data) => setPosts(data))

@@ -1,7 +1,7 @@
 import "../css/Userpage.css";
 import { useState, useEffect } from "react";
 
-export default function UserPage() {
+export default function UserPage({ token }) {
   ////////// Hook to store profilepicture data ////////////
   const [profilePicture, setProfilePicture] = useState();
 
@@ -25,7 +25,7 @@ export default function UserPage() {
       data.append("profilepicture", profilePicture);
     }
 
-    fetch("http://127.0.0.1:8000/api/5/", {
+    fetch(`http://127.0.0.1:8000/api/${token.id}/`, {
       method: "POST",
       body: data,
     }).catch((error) => console.log(error));
@@ -46,7 +46,8 @@ export default function UserPage() {
   //use effect hook to fetch data after loading//////////
 
   useEffect(() => {
-    fetch("http://127.0.0.1:8000/api/5", {
+	  console.log(token);
+    fetch(`http://127.0.0.1:8000/api/${token.id}`, {
       method: "GET",
     })
       .then((res) => res.json())

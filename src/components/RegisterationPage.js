@@ -64,9 +64,9 @@ export default function RegisterationPage() {
 
 		}
 	},[userData])
-	//
-	//
-	//
+
+
+
 	return (
     <div className="register_page">
       <div className="reg-input_container">
