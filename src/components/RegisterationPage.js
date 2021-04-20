@@ -66,7 +66,7 @@ export default function RegisterationPage() {
 			});
 
 		}
-	},[userData])
+	},[userData, Data, history])
 
 
 

@@ -12,17 +12,16 @@ export default function Card({post}) {
 	})
       .then((res) => res.json())
       .then((data) => setUser(data));
-  }, []);
+  }, [post]);
 
   //// setting the background image for cards
 
   useEffect(() => {
-    // console.log(post);
     let id = user.firstname + post.theme_image;
     const style = `--card-url: url("https://webletterapi.herokuapp.com${post.theme_image}");`;
     const car_id = document.getElementById(id);
     car_id.setAttribute("style", style);
-  }, [user]);
+  }, [user, post]);
 
   return (
     <div className="card" id={user.firstname + post.theme_image}>

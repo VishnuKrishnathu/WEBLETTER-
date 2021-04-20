@@ -15,8 +15,7 @@ export default function Article() {
 	})
       .then((res) => res.json())
       .then((data) => setPost(data));
-    console.log(post);
-  }, []);
+  }, [post, id]);
 
   useEffect(() => {
     const content = document.querySelector("#content");

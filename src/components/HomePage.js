@@ -36,7 +36,7 @@ export default function HomePage() {
     if (!fetchStatus) {
       document.querySelector(".main-content").innerHTML = content;
     }
-  }, [fetchStatus]);
+  }, [fetchStatus, content]);
 
   return (
     <div className="main-content">

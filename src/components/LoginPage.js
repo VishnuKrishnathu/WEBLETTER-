@@ -33,7 +33,7 @@ export default function LoginPage() {
 			}).then(res => res.json())
 			.then(data => setToken(data));
 		}
-	},[loginAccess]);
+	},[loginAccess, userData]);
 
 
 	/// updating the token to the reducers
@@ -45,7 +45,7 @@ export default function LoginPage() {
 		}else{
 			document.querySelector('.error_class').textContent= "Enter a valid username and password";
 		}
-	}, [token]);
+	}, [token, history, loginAccess]);
   return (
     <div id="login-page">
       <div className="input_container">
