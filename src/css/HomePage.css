@@ -51,5 +51,11 @@
 .main-content >div {
   padding-left: 2.9vw;
 }
-
+.error-page{
+	height: 50vh;
+	width:100%;
+	display: flex;
+	justify-content: space-around;
+	align-items: centre;
+}
 /*# sourceMappingURL=HomePage.css.map */

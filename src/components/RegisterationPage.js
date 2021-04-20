@@ -6,6 +6,9 @@ export default function RegisterationPage() {
 	const [userData, setUserData] = useState(null);
 	const [Data, setData] = useState({});
 	const history = useHistory();
+	useEffect(() =>{
+		localStorage.clear();	
+	},[])
 	const RegisterUser = ()=>{
 		const first_name = document.getElementById('fname').value;
 		const last_name = document.getElementById('lname').value;
@@ -32,7 +35,7 @@ export default function RegisterationPage() {
 				console.error("passwords dosen't match");
 				return;
 			}else{
-				fetch("http://127.0.0.1:8000/api/",{
+				fetch("https://webletterapi.herokuapp.com/api/",{
 					method:'POST',
 					body:data,
 				}).then(res => res.json()).then(data => setUserData(data.id));
@@ -50,7 +53,7 @@ export default function RegisterationPage() {
 			data.append('lastname', Data.lastname);
 			data.append('password', Data.password);
 			data.append('email', Data.emailadd)
-			fetch('http://127.0.0.1:8000/auth/register/',{
+			fetch('https://webletterapi.herokuapp.com/auth/register/',{
 				method: 'POST',
 				body:data,
 			}).then(res => res.json()).then(data => {

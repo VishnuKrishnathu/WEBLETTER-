@@ -1,8 +1,7 @@
 import "../css/HomePage.css";
 import Card from "./Card";
 import { useState, useEffect } from "react";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import Article from "./Article";
+import { Link } from "react-router-dom";
 
 export default function HomePage() {
   ///// use State hook to set posts ////////
@@ -24,7 +23,7 @@ export default function HomePage() {
   //////// loading posts from the api ///////
   useEffect(() => {
 	  const token = localStorage.getItem('token');
-		fetch("http://127.0.0.1:8000/posts/",{
+		fetch("https://webletterapi.herokuapp.com/posts/",{
 			headers:{
 				'Authorization' : `Token ${token}`,
 			}

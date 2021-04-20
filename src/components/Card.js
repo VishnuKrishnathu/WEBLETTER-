@@ -5,7 +5,7 @@ export default function Card({post}) {
 
   useEffect(() => {
 	  const token = localStorage.getItem('token');
-    fetch(`http://127.0.0.1:8000/api/${post.posts}`,{
+    fetch(`https://webletterapi.herokuapp.com/api/${post.posts}`,{
 		headers : {
 			'Authorization' : `Token ${token}`,
 		}
@@ -19,7 +19,7 @@ export default function Card({post}) {
   useEffect(() => {
     // console.log(post);
     let id = user.firstname + post.theme_image;
-    const style = `--card-url: url("http://127.0.0.1:8000${post.theme_image}");`;
+    const style = `--card-url: url("https://webletterapi.herokuapp.com${post.theme_image}");`;
     const car_id = document.getElementById(id);
     car_id.setAttribute("style", style);
   }, [user]);

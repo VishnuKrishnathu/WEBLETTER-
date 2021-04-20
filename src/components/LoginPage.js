@@ -14,7 +14,7 @@ export default function LoginPage() {
 	  user_data.append("username", username);
 	  user_data.append("password", password);
 	  setUserData(user_data);
-	  fetch("http://127.0.0.1:8000/auth/login/",{
+	  fetch("https://webletterapi.herokuapp.com/auth/login/",{
 		  method:'POST',
 		  body:user_data,
 	  }).then(res => res.json())
@@ -27,7 +27,7 @@ export default function LoginPage() {
 	//getting token from the api
 	useEffect(()=>{
 		if (loginAccess.username){
-			fetch('http://127.0.1:8000/auth/', {
+			fetch('https://webletterapi.herokuapp.com/auth/', {
 				method:'POST',
 				body: userData,
 			}).then(res => res.json())

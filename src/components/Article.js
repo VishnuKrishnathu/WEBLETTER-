@@ -8,7 +8,7 @@ export default function Article() {
 
   useEffect(() => {
 	  const token = localStorage.getItem('token');
-    fetch(`http://127.0.0.1:8000/posts/${id}`,{
+    fetch(`https://webletterapi.herokuapp.com/posts/${id}`,{
 		headers:{
 			'Authorization' : `Token ${token}`,
 		}
@@ -24,7 +24,7 @@ export default function Article() {
     let themepicture = document.querySelector("#main-article");
     themepicture.setAttribute(
       "style",
-      `--theme-image: url("http://localhost:8000${post.theme_image}");`
+      `--theme-image: url("https://webletterapi.herokuapp.com${post.theme_image}");`
     );
   }, [post]);
 

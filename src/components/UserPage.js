@@ -7,7 +7,7 @@ export default function UserPage() {
 	const [token, setToken] = useState({});
 /////////////// useEffect hook of updated tokens /////
 	useEffect(()=>{
-    fetch(`http://127.0.0.1:8000/api/${token.id}`, {
+    fetch(`https://webletterapi.herokuapp.com/api/${token.id}`, {
       method: "GET",
 		headers:{
 			'Authorization' : `Token ${token.token}`,
@@ -36,7 +36,7 @@ export default function UserPage() {
       data.append("profilepicture", profilePicture);
     }
 
-    fetch(`http://127.0.0.1:8000/api/${token.id}/`, {
+    fetch(`https://webletterapi.herokuapp.com/api/${token.id}/`, {
       method: "POST",
       body: data,
     }).catch((error) => console.log(error));
@@ -68,7 +68,7 @@ export default function UserPage() {
   ///use effect hook to update data/////////////////////
 
   useEffect(() => {
-    let style = `--main-url: url("http://127.0.0.1:8000${profileData.profilepicture}");`;
+    let style = `--main-url: url("https://webletterapi.herokuapp.com${profileData.profilepicture}");`;
     const profilepic = document.querySelector("#profile-picture");
     profilepic.setAttribute("style", style);
   }, [profileData]);
@@ -92,13 +92,13 @@ export default function UserPage() {
               <path
                 stroke-linecap="round"
                 stroke-linejoin="round"
-                stroke-width="2"
+                strokeWidth="2"
                 d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"
               ></path>
               <path
                 stroke-linecap="round"
                 stroke-linejoin="round"
-                stroke-width="2"
+                strokeWidth="2"
                 d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"
               ></path>
             </svg>
