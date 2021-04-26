@@ -9,9 +9,12 @@ export default function HomePage() {
   const [fetchStatus, setfetchStatus] = useState(true);
 //	const token = useSelector(token => token.tokens);
   const content = `
-  <div className = "error-page">
-    <a href="/login">Login</a>
-    <a href="/register">Register</a>
+  <div className = "error-page" style="height: 100%; display:flex; flex-direction:column; justify-content: center; align-items: center">
+  	<div style="height: 20%;">
+		<a href="/WEBLETTER-/#/login" style="padding: 2rem; font-size: 1.3rem">Login</a>
+		<a href="/WEBLETTER-/#/register" style="padding: 2rem; font-size: 1.3rem">Register</a>
+	</div>
+	<div style="height: 50%;color:red; font-size: 1.3rem; border:3px solid red; display:grid; place-items:center; padding: 2rem">Test Account<br/> Username: test <br/> Password: test</div>
   </div>
   `;
   ///// check the data from the fetch api ////
