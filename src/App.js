@@ -5,7 +5,7 @@ import UserPage from "./components/UserPage";
 import Article from "./components/Article";
 import LoginPage from "./components/LoginPage";
 import RegisterationPage from "./components/RegisterationPage";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { HashRouter as Router, Switch, Route } from "react-router-dom";
 import React from "react";
 import "./css/Init.css";
 
