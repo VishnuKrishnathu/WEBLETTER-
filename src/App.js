@@ -12,33 +12,33 @@ import "./css/Init.css";
 function App() {
 
   return (
-    <Router>
-      <div className="App">
-        <Switch>
-          <Route path="/users">
-            <NavBar />
-            <SideBar />
-            <UserPage />
-          </Route>
-          <Route path="/" exact>
-            <NavBar />
-            <SideBar />
-            <HomePage />
-          </Route>
-          <Route exact path="/login">
-            <LoginPage />
-          </Route>
-          <Route exact path="/register">
-            <RegisterationPage />
-          </Route>
-          <Route exact path="/:id">
-            <NavBar />
-            <SideBar />
-            <Article />
-          </Route>
-        </Switch>
-      </div>
-    </Router>
+		<Router>
+		  <div className="App">
+			<Switch>
+			  <Route path="/users">
+				<NavBar />
+				<SideBar />
+				<UserPage />
+			  </Route>
+			  <Route path="/" exact>
+				<NavBar />
+				<SideBar />
+				<HomePage />
+			  </Route>
+			  <Route exact path="/login">
+				<LoginPage />
+			  </Route>
+			  <Route exact path="/register">
+				<RegisterationPage />
+			  </Route>
+			  <Route exact path="/:id">
+				<NavBar />
+				<SideBar />
+				<Article />
+			  </Route>
+			</Switch>
+		  </div>
+		</Router>
   );
 }
 
